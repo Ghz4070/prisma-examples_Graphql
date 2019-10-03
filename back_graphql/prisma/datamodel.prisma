@@ -14,3 +14,12 @@ type Post {
   content: String
   author: User!
 }
+
+type Product {
+  id: ID! @id
+  label: String!
+  price: Int!
+  description: String!
+  published: Boolean! @default(value: true)
+  owner: User!
+}
