@@ -336,11 +336,15 @@ input PostWhereUniqueInput {
 
 type Product {
   id: ID!
-  label: String!
-  price: Int!
-  description: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  price: Float!
+  name: String!
+  description: String
+  quantity: Int
+  image: String
   published: Boolean!
-  owner: User!
+  category: String!
 }
 
 type ProductConnection {
@@ -351,11 +355,13 @@ type ProductConnection {
 
 input ProductCreateInput {
   id: ID
-  label: String!
-  price: Int!
-  description: String!
+  price: Float!
+  name: String!
+  description: String
+  quantity: Int
+  image: String
   published: Boolean
-  owner: UserCreateOneInput!
+  category: String!
 }
 
 type ProductEdge {
@@ -366,22 +372,37 @@ type ProductEdge {
 enum ProductOrderByInput {
   id_ASC
   id_DESC
-  label_ASC
-  label_DESC
+  createdAt_ASC
+  createdAt_DESC
+  updatedAt_ASC
+  updatedAt_DESC
   price_ASC
   price_DESC
+  name_ASC
+  name_DESC
   description_ASC
   description_DESC
+  quantity_ASC
+  quantity_DESC
+  image_ASC
+  image_DESC
   published_ASC
   published_DESC
+  category_ASC
+  category_DESC
 }
 
 type ProductPreviousValues {
   id: ID!
-  label: String!
-  price: Int!
-  description: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  price: Float!
+  name: String!
+  description: String
+  quantity: Int
+  image: String
   published: Boolean!
+  category: String!
 }
 
 type ProductSubscriptionPayload {
@@ -403,18 +424,23 @@ input ProductSubscriptionWhereInput {
 }
 
 input ProductUpdateInput {
-  label: String
-  price: Int
+  price: Float
+  name: String
   description: String
+  quantity: Int
+  image: String
   published: Boolean
-  owner: UserUpdateOneRequiredInput
+  category: String
 }
 
 input ProductUpdateManyMutationInput {
-  label: String
-  price: Int
+  price: Float
+  name: String
   description: String
+  quantity: Int
+  image: String
   published: Boolean
+  category: String
 }
 
 input ProductWhereInput {
@@ -432,28 +458,44 @@ input ProductWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  label: String
-  label_not: String
-  label_in: [String!]
-  label_not_in: [String!]
-  label_lt: String
-  label_lte: String
-  label_gt: String
-  label_gte: String
-  label_contains: String
-  label_not_contains: String
-  label_starts_with: String
-  label_not_starts_with: String
-  label_ends_with: String
-  label_not_ends_with: String
-  price: Int
-  price_not: Int
-  price_in: [Int!]
-  price_not_in: [Int!]
-  price_lt: Int
-  price_lte: Int
-  price_gt: Int
-  price_gte: Int
+  createdAt: DateTime
+  createdAt_not: DateTime
+  createdAt_in: [DateTime!]
+  createdAt_not_in: [DateTime!]
+  createdAt_lt: DateTime
+  createdAt_lte: DateTime
+  createdAt_gt: DateTime
+  createdAt_gte: DateTime
+  updatedAt: DateTime
+  updatedAt_not: DateTime
+  updatedAt_in: [DateTime!]
+  updatedAt_not_in: [DateTime!]
+  updatedAt_lt: DateTime
+  updatedAt_lte: DateTime
+  updatedAt_gt: DateTime
+  updatedAt_gte: DateTime
+  price: Float
+  price_not: Float
+  price_in: [Float!]
+  price_not_in: [Float!]
+  price_lt: Float
+  price_lte: Float
+  price_gt: Float
+  price_gte: Float
+  name: String
+  name_not: String
+  name_in: [String!]
+  name_not_in: [String!]
+  name_lt: String
+  name_lte: String
+  name_gt: String
+  name_gte: String
+  name_contains: String
+  name_not_contains: String
+  name_starts_with: String
+  name_not_starts_with: String
+  name_ends_with: String
+  name_not_ends_with: String
   description: String
   description_not: String
   description_in: [String!]
@@ -468,9 +510,44 @@ input ProductWhereInput {
   description_not_starts_with: String
   description_ends_with: String
   description_not_ends_with: String
+  quantity: Int
+  quantity_not: Int
+  quantity_in: [Int!]
+  quantity_not_in: [Int!]
+  quantity_lt: Int
+  quantity_lte: Int
+  quantity_gt: Int
+  quantity_gte: Int
+  image: String
+  image_not: String
+  image_in: [String!]
+  image_not_in: [String!]
+  image_lt: String
+  image_lte: String
+  image_gt: String
+  image_gte: String
+  image_contains: String
+  image_not_contains: String
+  image_starts_with: String
+  image_not_starts_with: String
+  image_ends_with: String
+  image_not_ends_with: String
   published: Boolean
   published_not: Boolean
-  owner: UserWhereInput
+  category: String
+  category_not: String
+  category_in: [String!]
+  category_not_in: [String!]
+  category_lt: String
+  category_lte: String
+  category_gt: String
+  category_gte: String
+  category_contains: String
+  category_not_contains: String
+  category_starts_with: String
+  category_not_starts_with: String
+  category_ends_with: String
+  category_not_ends_with: String
   AND: [ProductWhereInput!]
   OR: [ProductWhereInput!]
   NOT: [ProductWhereInput!]
@@ -517,11 +594,6 @@ input UserCreateInput {
   email: String!
   name: String
   posts: PostCreateManyWithoutAuthorInput
-}
-
-input UserCreateOneInput {
-  create: UserCreateInput
-  connect: UserWhereUniqueInput
 }
 
 input UserCreateOneWithoutPostsInput {
@@ -573,12 +645,6 @@ input UserSubscriptionWhereInput {
   NOT: [UserSubscriptionWhereInput!]
 }
 
-input UserUpdateDataInput {
-  email: String
-  name: String
-  posts: PostUpdateManyWithoutAuthorInput
-}
-
 input UserUpdateInput {
   email: String
   name: String
@@ -588,13 +654,6 @@ input UserUpdateInput {
 input UserUpdateManyMutationInput {
   email: String
   name: String
-}
-
-input UserUpdateOneRequiredInput {
-  create: UserCreateInput
-  update: UserUpdateDataInput
-  upsert: UserUpsertNestedInput
-  connect: UserWhereUniqueInput
 }
 
 input UserUpdateOneRequiredWithoutPostsInput {
@@ -607,11 +666,6 @@ input UserUpdateOneRequiredWithoutPostsInput {
 input UserUpdateWithoutPostsDataInput {
   email: String
   name: String
-}
-
-input UserUpsertNestedInput {
-  update: UserUpdateDataInput!
-  create: UserCreateInput!
 }
 
 input UserUpsertWithoutPostsInput {

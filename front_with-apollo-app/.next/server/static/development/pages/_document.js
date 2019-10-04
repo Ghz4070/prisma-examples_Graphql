@@ -1384,7 +1384,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_theme__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../lib/theme */ "./lib/theme.js");
 
 
-var _jsxFileName = "/Users/ighz/Git/API/prisma-examples_Graphql/front_with-apollo-app/pages/_document.js";
+var _jsxFileName = "/Users/ighz/Git/Ecole/API/prisma-examples_Graphql/front_with-apollo-app/pages/_document.js";
 var __jsx = react__WEBPACK_IMPORTED_MODULE_2___default.a.createElement;
 
 
@@ -1435,6 +1435,13 @@ class MyDocument extends next_document__WEBPACK_IMPORTED_MODULE_3___default.a {
       __source: {
         fileName: _jsxFileName,
         lineNumber: 18
+      },
+      __self: this
+    }), __jsx("script", {
+      src: "https://js.stripe.com/v3/",
+      __source: {
+        fileName: _jsxFileName,
+        lineNumber: 21
       },
       __self: this
     })), __jsx("body", {

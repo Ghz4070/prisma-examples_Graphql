@@ -1,59 +1,50 @@
 scalar DateTime
 
 type Query {
-  feed: [Post!]!
-  filterPosts(searchString: String): [Post!]!
-  post(id: ID!): Post
-  products: [Product!]!
-  product(id: ID!): Product!
+    feed: [Post!]!
+    filterPosts(searchString: String): [Post!]!
+    post(id: ID!): Post
+    getAllProduct: [Product]
+    getByIdProduct(id: ID!): Product
 }
 
 type Mutation {
-  signupUser(email: String!, name: String): User!
-  createDraft(title: String!, content: String, authorEmail: String!): Post!
-  deletePost(id: ID!): Post
-  updatePost(id: ID!, title: String!): Post
-  publish(id: ID!): Post
-  updateProduct(
-    id: ID!
-    label: String
-    price: Int
-    description: String
-    published: Boolean
-  ): Product
-  deleteProduct(id: ID!): Product
-  createProduct(
-    label: String!
-    price: Int!
-    description: String!
-    published: Boolean!
-    ownerEmail: String!
-  ): Product!
+    signupUser(email: String!, name: String): User!
+    createDraft(title: String!, content: String, authorEmail: String!): Post!
+    deletePost(id: ID!): Post
+    publish(id: ID!): Post
+    deleteProduct(id: ID!): Product
+    addProduct(createdAt: DateTime, updatedAt: DateTime, price:Float!, name:String!, description:String, quantity:Int, image:String, published: Boolean, category:String!):Product,
+    updateProduct(id: ID!,createdAt: DateTime, updatedAt: DateTime, price:Float, name:String, description:String, quantity:Int, image:String, published: Boolean, category:String):Product,
+    createCheckoutSession: String!
 }
 
 type Post {
-  id: ID!
-  createdAt: DateTime!
-  updatedAt: DateTime!
-  published: Boolean!
-  title: String!
-  content: String
-  author: User!
+    id: ID!
+    createdAt: DateTime!
+    updatedAt: DateTime!
+    published: Boolean!
+    title: String!
+    content: String
+    author: User!
 }
 
 type User {
-  id: ID!
-  email: String!
-  name: String
-  posts: [Post!]!
+    id: ID!
+    email: String!
+    name: String
+    posts: [Post!]!
 }
 
 type Product {
-  id: ID!
-  label: String!
-  price: Int!
-  description: String!
-  published: Boolean!
-  owner: User!
-  labelAndPrice: String
+    id: ID!,
+    createdAt: DateTime
+    updatedAt: DateTime
+    price: Float!
+    name: String!
+    description: String
+    quantity: Int
+    image: String
+    published: Boolean
+    category: String!
 }
